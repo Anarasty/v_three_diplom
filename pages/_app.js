@@ -8,6 +8,9 @@ function MyApp({ Component, pageProps }) {
     <div>
       <Header />
       <Component {...pageProps} />
+      <div className="test-class">
+      Tailwind працює?
+    </div>
       <Footer />
     </div>
   );
