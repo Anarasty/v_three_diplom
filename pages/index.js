@@ -1,16 +1,17 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import React, { useEffect } from "react"; // maybe delete
+import React, { useEffect, useState } from "react"; // maybe delete
 import Hero from "../components/Home/Hero";
 import Search from "../components/Home/Search";
 import ItemList from "../components/Home/ItemList";
+import Posts from "../components/Home/Posts"
 import { getFirestore, doc, setDoc, getDoc, collection, getDocs } from "firebase/firestore";
 import app from '../shared/FirebaseConfig'
 export default function Home() {
 
   const db = getFirestore(app);
-
+  const [posts, setPosts]=useState([])
   useEffect(()=>{
     getPost()
   },[])
@@ -18,8 +19,8 @@ export default function Home() {
   const getPost=async()=>{
     const querySnapshot = await getDocs(collection(db, "posts"));
 querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
+  // console.log(doc.id, " => ", doc.data());
+  setPosts(posts=>[...posts,doc.data()])
 });
   }
 
@@ -28,6 +29,7 @@ querySnapshot.forEach((doc) => {
       <Hero/>
       <Search/>
       <ItemList/>
+      {posts? <Posts posts={posts}/>:null}
     </div>
   );
 }
