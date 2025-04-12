@@ -1,6 +1,6 @@
 import React from "react"; //maybe delete
-import Footer from "../components/Home/Footer";
-import Header from "../components/Home/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 import { SessionProvider } from "next-auth/react"
