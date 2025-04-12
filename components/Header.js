@@ -11,7 +11,7 @@ function Header() {
   console.log("Session",session)
   return (
     <div className='d-flex justify-content-between p-3 border-bottom border-primary'>
-      <img src='./Images/logo.png' width={150} alt='test2'></img>
+      <img src='./Images/logo2.png' width={150} alt='test2'></img>
       <div className='d-flex gap-4 align-items-center'>
         <button className='btn btn-primary'><span className="d-none d-md-inline">Post Item</span> <BsCheck2Square className="d-inline d-md-none"/>
         </button>
