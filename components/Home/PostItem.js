@@ -46,6 +46,15 @@ import { BsCalendar2EventFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import UserInfo from "./UserInfo";
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 function PostItem({ post, modal = false }) {
   const defaultImage = "./Images/placeholder.jpg";
   if (!post) return null;
@@ -75,7 +84,7 @@ function PostItem({ post, modal = false }) {
         <h5 className="card-title">{post.title}</h5>
         <div className="d-flex align-items-center text-warning gap-2 mb-2">
           <BsCalendar2EventFill />
-          {post.date}
+          {formatDate(post.date)}
         </div>
         <div className="d-flex align-items-center text-primary gap-2 mb-2">
           <FaLocationDot />

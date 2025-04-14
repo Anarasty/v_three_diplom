@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
+import Link from 'next/link';
 
 import { BsCheck2Square } from "react-icons/bs";
 import { BsArrowRightSquareFill } from "react-icons/bs";
@@ -25,7 +26,9 @@ function Header() {
 
   return (
     <div className='d-flex justify-content-between p-3 border-bottom border-primary'>
-      <img src='./Images/logo2.png' width={150} alt='test2'></img>
+      <Link href="/">
+  <img src="/Images/logo2.png" width={150} alt="test2" style={{ cursor: 'pointer' }} />
+</Link>
       <div className='d-flex gap-4 align-items-center'>
         <button onClick={handleClick} className='btn btn-primary'><span className="d-none d-md-inline">Post Item</span> <BsCheck2Square className="d-inline d-md-none"/>
         </button>
