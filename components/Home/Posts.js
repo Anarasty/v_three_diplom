@@ -44,7 +44,7 @@ function Posts({ posts }) {
         {posts.map((item, index) => (
           <div
             key={index}
-            className="col-12 col-md-6 col-lg-3"
+            className="col-12 col-md-6 col-lg-4"
             onClick={() => setPost(item)}
             data-bs-toggle="modal"
             data-bs-target="#myModal"
