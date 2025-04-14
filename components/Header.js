@@ -6,17 +6,31 @@ import { BsCheck2Square } from "react-icons/bs";
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { useRouter } from 'next/router';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const USER_IMAGE='https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg'
 function Header() {
   const router = useRouter();
   const { data: session } = useSession()
   console.log("Session",session)
+  
+  const handleClick = () => {
+    if (session) {
+      router.push('/create-post');
+    } else {
+      toast.warning('LOG IN TO CREATE YOUR POST!');
+    }
+  };
+
   return (
     <div className='d-flex justify-content-between p-3 border-bottom border-primary'>
       <img src='./Images/logo2.png' width={150} alt='test2'></img>
       <div className='d-flex gap-4 align-items-center'>
-        <button onClick={()=>router.push('/create-post')} className='btn btn-primary'><span className="d-none d-md-inline">Post Item</span> <BsCheck2Square className="d-inline d-md-none"/>
+        <button onClick={handleClick} className='btn btn-primary'><span className="d-none d-md-inline">Post Item</span> <BsCheck2Square className="d-inline d-md-none"/>
         </button>
+
+        <ToastContainer position="top-center" autoClose={3000} />
 
        {!session?<button className='btn btn-outline-primary' onClick={()=>signIn()}><span className="d-none d-md-inline">Sign In</span> <BsArrowRightSquareFill className="d-inline d-md-none"/>
         </button>
