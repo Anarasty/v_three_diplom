@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Data from "../../shared/Data";
 import { useSession } from "next-auth/react";
+import app from "./../../shared/FirebaseConfig";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+
 
 function Form() {
     const [inputs, setInputs]=useState({})
     const {data:session}=useSession()
+    const db = getFirestore(app)
     useEffect(()=>{
         if (session) {
             setInputs((values) => ({ ...values, userName: session.user?.name }));
@@ -18,9 +22,10 @@ function Form() {
         const value=e.target.value;
         setInputs((values)=>({...values,[name]:value}))
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault();
         console.log("OnSubmit", inputs)
+        await setDoc(doc(db, "posts", Date.now().toString()), inputs)
     }
   return (
     <div>

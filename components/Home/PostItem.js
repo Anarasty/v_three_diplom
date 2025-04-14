@@ -47,6 +47,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import UserInfo from "./UserInfo";
 
 function PostItem({ post, modal = false }) {
+  const defaultImage = "./Images/placeholder.jpg";
   if (!post) return null;
 
   return (
@@ -61,7 +62,7 @@ function PostItem({ post, modal = false }) {
       <div style={{ height: "200px", overflow: "hidden" }}>
         <img
           className="card-img-top"
-          src={post.image}
+          src={post.image ? post.image : defaultImage}
           alt="Card image cap"
           style={{
             width: "100%",
