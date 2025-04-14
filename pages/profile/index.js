@@ -51,32 +51,45 @@ function Profile() {
   }
 
   return (
-    <div className="container mt-4">
-  <h2 className="h3 fw-bold text-primary mb-3">Profile</h2>
-  <p className="mb-4">Manage your posts</p>
-
-  <div className="row g-4">
-    {userPost.map((item) => (
-      <div key={item.id} className="col-lg-4 col-md-6 col-sm-12">
-      <div className="card h-100 shadow-sm border-0 d-flex flex-column" style={{ minHeight: '500px',width: "20rem", }}>
-        <PostItem post={item} />
-    
-        <div className="mt-auto p-3">
-          <button
-            className="btn btn-danger w-100"
-            onClick={() => onDeletePost(item.id)}
-          >
-            Delete
-          </button>
+    <div className="container mt-4 d-flex flex-column align-items-center justify-content-center">
+      <h2 className="h3 fw-bold text-primary mb-3">Profile</h2>
+      <p className="mb-4">Manage your posts</p>
+  
+      {userPost.length === 0 ? (
+        <div className="text-center mt-5">
+          <img
+            src="./Images/empty_post.png"
+            alt="No posts"
+            style={{ maxWidth: "300px", width: "100%" }}
+          />
+          <p className="mt-3 text-muted">You have no posts yet.</p>
         </div>
-      </div>
+      ) : (
+        <div className="row g-4">
+          {userPost.map((item) => (
+            <div key={item.id} className="col-lg-4 col-md-6 col-sm-12">
+              <div
+                className="card h-100 shadow-sm border-0 d-flex flex-column"
+                style={{ minHeight: "500px", width: "20rem" }}
+              >
+                <PostItem post={item}/>
+                {/* ADD into PostItme to not show the author post name modal={true} */}
+                <div className="mt-auto p-3">
+                  <button
+                    className="btn btn-danger w-100"
+                    onClick={() => onDeletePost(item.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+  
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
-    ))}
-  </div>
-
-  <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-
-</div>
   );
 }
 

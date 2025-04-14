@@ -3,18 +3,19 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-import { SessionProvider } from "next-auth/react"
-
+import { SessionProvider } from "next-auth/react";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <div>
-      <SessionProvider session={session}>
+    <SessionProvider session={session}>
+      <div className="d-flex flex-column min-vh-100">
         <Header />
-        <Component {...pageProps} />
+        <main className="flex-grow-1">
+          <Component {...pageProps} />
+        </main>
         <Footer />
-      </SessionProvider>
-    </div>
+      </div>
+    </SessionProvider>
   );
 }
 
