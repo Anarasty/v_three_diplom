@@ -81,6 +81,13 @@ function PostItem({ post, modal = false }) {
           {post.location}, {post.zip}
         </div>
         <p className="card-text">{post.desc}</p>
+        <div
+  className={`d-inline p-2 text-white rounded ${
+    post.status === "found" ? "bg-success" : "bg-danger"
+  }`}
+>
+  {post.status}
+</div>
 
         {!modal && <UserInfo user={post} />}
 
