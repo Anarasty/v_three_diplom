@@ -38,7 +38,6 @@
 
 // export default PostItem;
 
-
 //КОД БЕЗ ЮЗЕР ИНФО +++ ВЫШЕ
 
 import React from "react";
@@ -55,20 +54,37 @@ function formatDate(dateString) {
   });
 }
 
+function truncateText(text, maxLength) {
+  if (!text) return "";
+  return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+}
+
 function PostItem({ post, modal = false }) {
   const defaultImage = "./Images/placeholder.jpg";
   if (!post) return null;
 
   return (
+    // <div
+    //   className="card"
+    //   style={{
+    //     width: "20rem",
+    //     height: "30rem",
+    //     display: "flex",
+    //     flexDirection: "column",
+    //   }}
+    // >
     <div
       className="card"
       style={{
-        width: "20rem",
+        width: modal ? "20rem" : "40rem",
+        height: modal ? "30rem" : "auto",
+        maxHeight: modal ? "none" : "80vh",
         display: "flex",
         flexDirection: "column",
       }}
     >
-      <div style={{ height: "200px", overflow: "hidden" }}>
+      {/* <div style={{ height: "200px", overflow: "hidden" }}> */}
+      <div style={{ height: modal ? "15rem" : "35rem" , overflow: "hidden" }}>
         <img
           className="card-img-top"
           src={post.image ? post.image : defaultImage}
@@ -80,7 +96,12 @@ function PostItem({ post, modal = false }) {
           }}
         />
       </div>
-      <div className="card-body">
+      <div
+        className="card-body d-flex flex-column justify-content-between"
+        style={{
+          flexGrow: 1,
+        }}
+      >
         <h5 className="card-title">{post.title}</h5>
         <div className="d-flex align-items-center text-warning gap-2 mb-2">
           <BsCalendar2EventFill />
@@ -90,24 +111,26 @@ function PostItem({ post, modal = false }) {
           <FaLocationDot />
           {post.location}, {post.zip}
         </div>
-        <p className="card-text">{post.desc}</p>
+        <p className="card-text">
+          {modal ? truncateText(post.desc, 50) : post.desc}
+        </p>
         <div
-  className={`d-inline p-2 text-white rounded ${
-    post.status === "found" ? "bg-success" : "bg-danger"
-  }`}
->
-  {post.status}
-</div>
+          className={`d-inline p-2 text-white rounded text-center text-uppercase ${
+            post.status === "found" ? "bg-success" : "bg-danger"
+          }`}
+        >
+          {post.status}
+        </div>
 
         {!modal && <UserInfo user={post} />}
 
-        {modal && (
+        {/* {modal && (
           <div className="mt-3">
             <a href="#" className="btn btn-primary">
               Read more
             </a>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

@@ -4,7 +4,6 @@
 // import app from "./../../shared/FirebaseConfig";
 // import { doc, getFirestore, setDoc } from "firebase/firestore";
 
-
 // function Form() {
 //     const [inputs, setInputs]=useState({})
 //     const {data:session}=useSession()
@@ -148,7 +147,7 @@ import app from "./../../shared/FirebaseConfig";
 import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function Form() {
   const [inputs, setInputs] = useState({});
@@ -182,8 +181,23 @@ function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const zip = inputs.zip || "";
+    const desc = inputs.desc || "";
+
+    // 🔍 Перевірка zip
+    if (zip.length !== 5) {
+      toast.error("Zip code must be exactly 5 characters long.");
+      return;
+    }
+
+    // 🔍 Перевірка опису
+    if (desc.length === 0 || desc.length > 200) {
+      toast.error("Description must be between 1 and 200 characters.");
+      return;
+    }
+
     if (file) {
-      const storageRef = ref(storage, 'uploads/' + file.name);
+      const storageRef = ref(storage, "uploads/" + file.name);
       try {
         await uploadBytes(storageRef, file);
         const url = await getDownloadURL(storageRef);

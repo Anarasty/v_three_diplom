@@ -9,7 +9,7 @@
 
 //   return (
 //     <div>
-      
+
 //         {/* Кнопка для открытия модального окна */}
 //       <button
 //         type="button"
@@ -75,9 +75,11 @@ function PostModal({ post }) {
       aria-labelledby="myModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: "fit-content" }}>
+      <div
+        className="modal-dialog modal-dialog-centered"
+        style={{ maxWidth: "fit-content" }}
+      >
         <div className="modal-content border-0 shadow-none position-relative">
-          
           {/* Кастомная кнопка закрытия */}
           <button
             type="button"
@@ -92,9 +94,19 @@ function PostModal({ post }) {
             {post ? (
               <PostItem post={post} modal={false} />
             ) : (
-              <p>Пост не вибраний.</p>
+              <p>No chosen post.</p>
             )}
           </div>
+          {/* <div
+            className="modal-body p-3"
+            style={{ maxHeight: "80vh", overflowY: "auto" }}
+          >
+            {post ? (
+              <PostItem post={post} modal={true} />
+            ) : (
+              <p>No chosen post.</p>
+            )}
+          </div> */}
         </div>
       </div>
 
@@ -130,7 +142,8 @@ function PostModal({ post }) {
 export default PostModal;
 
 //CHECK MODAL POST
-{/* <div
+{
+  /* <div
       className="modal fade"
       id="myModal"
       tabIndex="-1"
@@ -159,4 +172,5 @@ export default PostModal;
           </div>
         </div>
       </div>
-    </div> */}
+    </div> */
+}

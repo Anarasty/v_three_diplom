@@ -72,11 +72,11 @@ function Profile() {
                 className="card h-100 shadow-sm border-0 d-flex flex-column"
                 style={{ minHeight: "500px", width: "20rem" }}
               >
-                <PostItem post={item}/>
+                <PostItem post={item} name modal={true}/>
                 {/* ADD into PostItme to not show the author post name modal={true} */}
-                <div className="mt-auto p-3">
+                <div className="mt-auto p-3 d-flex justify-content-center">
                   <button
-                    className="btn btn-danger w-100"
+                    className="btn btn-warning w-50"
                     onClick={() => onDeletePost(item.id)}
                   >
                     Delete
