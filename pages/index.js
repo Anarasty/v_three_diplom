@@ -57,6 +57,7 @@ export default function Home() {
   const db = getFirestore(app);
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     getPost();
@@ -72,11 +73,27 @@ export default function Home() {
     setFilteredPosts(fetchedPosts); // по умолчанию показываем все
   };
 
+  const handleSelectCategory = (category) => {
+    const newCategory = selectedCategory === category ? null : category;
+    setSelectedCategory(newCategory);
+    if (newCategory) {
+      const filtered = posts.filter(
+        (post) => post.itemCategory === newCategory
+      );
+      setFilteredPosts(filtered);
+    } else {
+      setFilteredPosts(posts); // сброс фильтра
+    }
+  };
+
   return (
     <div className="px-3 px-sm-5 px-md-10 mt-5">
       <Hero />
       <Search posts={posts} setFilteredPosts={setFilteredPosts} />
-      <ItemList />
+      <ItemList
+        onSelectCategory={handleSelectCategory}
+        selectedCategory={selectedCategory}
+      />
       {filteredPosts && <Posts posts={filteredPosts} />}
     </div>
   );
