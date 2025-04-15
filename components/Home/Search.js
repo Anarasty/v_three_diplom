@@ -58,7 +58,7 @@ function Search({ posts, setFilteredPosts }) {
     }
 
     const fuse = new Fuse(posts, {
-      keys: ["title", "desc", "location", "zip"], // можно расширить
+      keys: ["title", "desc", "location", "zip"],
       threshold: 0.3, // чувствительность (0 = строго, 1 = размыто)
     });
 

@@ -5,6 +5,8 @@ import Link from "next/link";
 
 import { BsCheck2Square } from "react-icons/bs";
 import { BsArrowRightSquareFill } from "react-icons/bs";
+import { BsFillInfoCircleFill } from "react-icons/bs";
+
 import { useRouter } from "next/router";
 
 import { toast, ToastContainer } from "react-toastify";
@@ -24,6 +26,13 @@ function Header() {
       toast.warning("LOG IN TO CREATE YOUR POST!");
     }
   };
+  const handleCheckStats = () => {
+    if (session) {
+      router.push("/stats");
+    } else {
+      toast.warning("LOG IN TO SEE STATISTICS!");
+    }
+  }
 
   return (
     <div className="d-flex justify-content-between p-3 border-bottom border-primary">
@@ -54,6 +63,11 @@ function Header() {
             <BsArrowRightSquareFill className="d-inline d-md-none" />
           </button>
         )}
+
+        <button onClick={handleCheckStats} className="btn btn-primary">
+          <span className="d-none d-md-inline">Check Stats</span>{" "}
+          <BsFillInfoCircleFill className="d-inline d-md-none" />
+        </button>
 
         <Image
           style={{ cursor: "pointer" }}
