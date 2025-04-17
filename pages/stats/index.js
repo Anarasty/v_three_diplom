@@ -35,7 +35,7 @@ function StatsPage() {
     const querySnapshot = await getDocs(collection(db, "posts"));
     const items = querySnapshot.docs.map((doc) => doc.data());
 
-    // Категории
+    // Category
     const categoryCounts = {
       Documents: 0,
       Keys: 0,
@@ -46,7 +46,7 @@ function StatsPage() {
       Other: 0,
     };
 
-    // Статусы
+    // Status
     const statusCounts = {
       found: 0,
       lost: 0,
@@ -72,7 +72,7 @@ function StatsPage() {
     }));
 
     const pieChartData = Object.entries(statusCounts).map(([key, value]) => ({
-      name: key === "found" ? "Найдено" : "Потеряно",
+      name: key === "found" ? "Found" : "Lost",
       value,
     }));
 
@@ -82,9 +82,9 @@ function StatsPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Общая статистика по предметам</h1>
+      <h1 className="text-2xl font-bold my-5">General statistics by item category</h1>
       {categoryData.length === 0 ? (
-        <p>Нет данных для отображения. Добавьте хотя бы один предмет.</p>
+        <p>No data to display. Please add at least one item.</p>
       ) : (
         <>
           <ResponsiveContainer width="100%" height={400}>
@@ -94,12 +94,12 @@ function StatsPage() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="count" fill="#8884d8" name="Количество предметов" />
+              <Bar dataKey="count" fill="#8884d8" name="Items count" />
             </BarChart>
           </ResponsiveContainer>
 
-          <h2 className="text-xl font-semibold mt-10 mb-4">
-            Статистика по статусу предметов
+          <h2 className="text-xl font-semibold mt-10 mb-4 pt-5">
+          General statistics on found and lost items
           </h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
