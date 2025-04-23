@@ -184,13 +184,11 @@ function Form() {
     const zip = inputs.zip || "";
     const desc = inputs.desc || "";
 
-    // 🔍 Перевірка zip
     if (zip.length !== 5) {
       toast.error("Zip code must be exactly 5 characters long.");
       return;
     }
 
-    // 🔍 Перевірка опису
     if (desc.length === 0 || desc.length > 200) {
       toast.error("Description must be between 1 and 200 characters.");
       return;
@@ -208,7 +206,6 @@ function Form() {
         console.error("Upload error", error);
       }
     } else {
-      // якщо файл не вибрано — зберігаємо без зображення
       setInputs((values) => ({ ...values, image: "" }));
       setSubmit(true);
     }

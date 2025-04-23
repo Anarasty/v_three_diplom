@@ -44,6 +44,7 @@ import React from "react";
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import UserInfo from "./UserInfo";
+import Image from "next/image";
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -84,8 +85,8 @@ function PostItem({ post, modal = false }) {
       }}
     >
       {/* <div style={{ height: "200px", overflow: "hidden" }}> */}
-      <div style={{ height: modal ? "15rem" : "35rem" , overflow: "hidden" }}>
-        <img
+      <div style={{ height: modal ? "15rem" : "35rem", overflow: "hidden" }}>
+        {/* <img
           className="card-img-top"
           src={post.image ? post.image : defaultImage}
           alt="Card image cap"
@@ -94,6 +95,20 @@ function PostItem({ post, modal = false }) {
             height: "100%",
             objectFit: "cover",
           }}
+        /> */}
+        <Image
+          className="card-img-top"
+          src={post.image || defaultImage}
+          alt="Card image cap"
+          width={500} 
+          height={300} 
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+          unoptimized={post.image?.startsWith("http")}
+          loading="lazy"
         />
       </div>
       <div
