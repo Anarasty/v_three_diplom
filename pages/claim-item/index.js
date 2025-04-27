@@ -87,116 +87,116 @@ const handleSubmit = async (e) => {
   };
 
   return (
-    <div className="container mt-4">
-      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
-      <h2 className="h4 mb-4">Claim an Item</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone Number"
-            required
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <div className="mb-3">
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="3"
-            required
-            onChange={handleChange}
-            className="form-control"
-          />
-        </div>
-
-        <div className="mb-3">
-          <select
-            name="itemId"
-            onChange={handleChange}
-            required
-            className="form-select"
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select an Item
-            </option>
-            {posts.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.title || "Unnamed Item"}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Показываем карточку выбранного предмета */}
-        {selectedPost && (
-  <div className="card mb-3" style={{ maxWidth: "400px" }}>
-    <div className="row g-0">
-      <div className="col-4">
-        <img
-          src={selectedPost.image || "/placeholder.png"}
-          alt={selectedPost.title}
-          className="img-fluid rounded-start"
-          style={{ objectFit: "cover", height: "100%" }}
-        />
-      </div>
-      <div className="col-8">
-        <div className="card-body p-2">
-          <h5 className="card-title mb-1" style={{ fontSize: "1rem" }}>
-            {selectedPost.title || "No Title"}
-          </h5>
-          <p className="card-text mb-1" style={{ fontSize: "0.875rem" }}>
-            {selectedPost.desc || "No Description"}
-          </p>
-
-          {/* Новый красивый статус */}
-          {selectedPost.status && (
-            <div
-              style={{
-                display: "inline-block",
-                padding: "4px 8px",
-                borderRadius: "8px",
-                fontSize: "0.75rem",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-                color:
-                  selectedPost.status.toUpperCase() === "LOST"
-                    ? "#dc3545" // красный текст
-                    : "#198754", // зелёный текст
-                backgroundColor:
-                  selectedPost.status.toUpperCase() === "LOST"
-                    ? "#f8d7da" // светло-красный фон
-                    : "#d1e7dd", // светло-зелёный фон
-              }}
+    <div className="container mt-4 d-flex justify-content-center">
+      <div style={{ width: "100%", maxWidth: "500px" }}>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+        <h2 className="h4 mb-4 text-center">Claim an Item</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+  
+          <div className="mb-3">
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone Number"
+              required
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+  
+          <div className="mb-3">
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="3"
+              required
+              onChange={handleChange}
+              className="form-control"
+            />
+          </div>
+  
+          <div className="mb-3">
+            <select
+              name="itemId"
+              onChange={handleChange}
+              required
+              className="form-select"
+              defaultValue=""
             >
-              {selectedPost.status.toUpperCase()}
+              <option value="" disabled>
+                Select an Item
+              </option>
+              {posts.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.title || "Unnamed Item"}
+                </option>
+              ))}
+            </select>
+          </div>
+  
+          {selectedPost && (
+            <div className="card mb-3" style={{ maxWidth: "400px", margin: "0 auto" }}>
+              <div className="row g-0">
+                <div className="col-4">
+                  <img
+                    src={selectedPost.image || "/placeholder.png"}
+                    alt={selectedPost.title}
+                    className="img-fluid rounded-start"
+                    style={{ objectFit: "cover", height: "100%" }}
+                  />
+                </div>
+                <div className="col-8">
+                  <div className="card-body p-2">
+                    <h5 className="card-title mb-1" style={{ fontSize: "1rem" }}>
+                      {selectedPost.title || "No Title"}
+                    </h5>
+                    <p className="card-text mb-1" style={{ fontSize: "0.875rem" }}>
+                      {selectedPost.desc || "No Description"}
+                    </p>
+  
+                    {selectedPost.status && (
+                      <div
+                        style={{
+                          display: "inline-block",
+                          padding: "4px 8px",
+                          borderRadius: "8px",
+                          fontSize: "0.75rem",
+                          fontWeight: "bold",
+                          textTransform: "uppercase",
+                          color:
+                            selectedPost.status.toUpperCase() === "LOST"
+                              ? "#dc3545"
+                              : "#198754",
+                          backgroundColor:
+                            selectedPost.status.toUpperCase() === "LOST"
+                              ? "#f8d7da"
+                              : "#d1e7dd",
+                        }}
+                      >
+                        {selectedPost.status.toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
-        </div>
+  
+          <button type="submit" className="btn btn-primary w-100">
+            Submit Claim
+          </button>
+        </form>
       </div>
-    </div>
-  </div>
-)}
-
-        <button type="submit" className="btn btn-primary w-100">
-          Submit Claim
-        </button>
-      </form>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BsCheck2Square } from "react-icons/bs";
 import { BsArrowRightSquareFill } from "react-icons/bs";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import { FaHandPaper } from "react-icons/fa";
 
 import { useRouter } from "next/router";
 
@@ -31,6 +32,14 @@ function Header() {
       router.push("/stats");
     } else {
       toast.warning("LOG IN TO SEE STATISTICS!");
+    }
+  }
+
+  const handleCheckClaim = () => {
+    if (session) {
+      router.push("/claim-item");
+    } else {
+      toast.warning("LOG IN TO CLAIM ITEM!");
     }
   }
 
@@ -67,6 +76,11 @@ function Header() {
         <button onClick={handleCheckStats} className="btn btn-primary">
           <span className="d-none d-md-inline">Check Stats</span>{" "}
           <BsFillInfoCircleFill className="d-inline d-md-none" />
+        </button>
+
+        <button onClick={handleCheckClaim} className="btn btn-primary">
+          <span className="d-none d-md-inline">Claim Item</span>{" "}
+          <FaHandPaper className="d-inline d-md-none" />
         </button>
 
         <Image
