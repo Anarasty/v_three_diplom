@@ -29,3 +29,12 @@ a {
     background: black;
   }
 }
+
+/* globals.css */
+.goog-logo-link, .goog-te-gadget span {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+}

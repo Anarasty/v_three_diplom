@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
@@ -42,6 +42,31 @@ function Header() {
       toast.warning("LOG IN TO CLAIM ITEM!");
     }
   }
+
+  useEffect(() => {
+    const addGoogleTranslateScript = () => {
+      if (document.getElementById("google-translate-script")) return;
+  
+      const script = document.createElement("script");
+      script.id = "google-translate-script";
+      script.src =
+        "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(script);
+  
+      window.googleTranslateElementInit = () => {
+        new window.google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,uk,ru", // какие языки доступны
+            layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      };
+    };
+  
+    addGoogleTranslateScript();
+  }, []);
 
   return (
     <div className="d-flex justify-content-between p-3 border-bottom border-primary">
@@ -98,6 +123,8 @@ function Header() {
             }
           }}
         />
+
+<div id="google_translate_element" style={{ minWidth: 120 }} />
       </div>
     </div>
   );
