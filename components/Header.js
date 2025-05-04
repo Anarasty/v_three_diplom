@@ -57,7 +57,7 @@ function Header() {
         new window.google.translate.TranslateElement(
           {
             pageLanguage: "en",
-            includedLanguages: "en,uk,ru", // какие языки доступны
+            includedLanguages: "en,uk,ru", // available languages
             layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           },
           "google_translate_element"

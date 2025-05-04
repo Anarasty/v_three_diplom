@@ -65,15 +65,6 @@ function PostItem({ post, modal = false }) {
   if (!post) return null;
 
   return (
-    // <div
-    //   className="card"
-    //   style={{
-    //     width: "20rem",
-    //     height: "30rem",
-    //     display: "flex",
-    //     flexDirection: "column",
-    //   }}
-    // >
     <div
       className="card"
       style={{
@@ -86,16 +77,6 @@ function PostItem({ post, modal = false }) {
     >
       {/* <div style={{ height: "200px", overflow: "hidden" }}> */}
       <div style={{ height: modal ? "15rem" : "35rem", overflow: "hidden" }}>
-        {/* <img
-          className="card-img-top"
-          src={post.image ? post.image : defaultImage}
-          alt="Card image cap"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        /> */}
         <Image
           className="card-img-top"
           src={post.image || defaultImage}
@@ -138,14 +119,6 @@ function PostItem({ post, modal = false }) {
         </div>
 
         {!modal && <UserInfo user={post} />}
-
-        {/* {modal && (
-          <div className="mt-3">
-            <a href="#" className="btn btn-primary">
-              Read more
-            </a>
-          </div>
-        )} */}
       </div>
     </div>
   );
