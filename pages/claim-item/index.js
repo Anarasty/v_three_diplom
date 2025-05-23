@@ -3,7 +3,7 @@ import app from "../../shared/FirebaseConfig";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useSession } from "next-auth/react"; // если используешь NextAuth.js
+import { useSession } from "next-auth/react"; 
 
 function ClaimItem() {
   const { data: session } = useSession();
@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
           senderImage: session.user.image,
           message: inputs.message,
           phone: inputs.phone,
-          selectedPost: selectedPost, // сюда весь объект поста
+          selectedPost: selectedPost, 
         }),
       });
   

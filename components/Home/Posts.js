@@ -7,15 +7,12 @@ function Posts({ posts }) {
 
   useEffect(() => {
     console.log("Posts", posts);
-    import("bootstrap/dist/js/bootstrap.bundle.min.js"); // Подгружаем JS для модалок
+    import("bootstrap/dist/js/bootstrap.bundle.min.js");
   }, []);
 
   return (
     <div className="container mt-5 px-3">
-      {/* Модалка */}
       <PostModal post={post} />
-
-      {/* Сетка карточек */}
       <div className="row g-4">
         {posts.map((item, index) => (
           <div

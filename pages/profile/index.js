@@ -43,7 +43,7 @@ function Profile() {
     try {
       await deleteDoc(doc(db, "posts", id));
       toast.success("Post successfully deleted!");
-      setUserPost(userPost.filter(post => post.id !== id)); // Обновляем список без перезагрузки
+      setUserPost(userPost.filter(post => post.id !== id)); 
     } catch (error) {
       console.error("Error deleting post:", error);
       toast.error("Failed to delete post. Please try again.");
@@ -94,21 +94,3 @@ function Profile() {
 }
 
 export default Profile;
-
-
-// OLD DIV
-{/* <div className="p-4 mt-4 col-lg-4 col-md-6">
-      <h2 className="h3 fw-bold text-primary">Profile</h2>
-      <p>Manage your posts</p>
-      <div>
-        {userPost&&userPost?.map((item)=>(
-          <div>
-            <p>{item.title}</p>
-            <PostItem post={item}/>
-            <button className='bg-red-400 w-full p-1 mt-1
-        rounded-md text-white' 
-       onClick={()=>onDeletePost(item.id)}>Delete</button>
-          </div>
-        ))}
-      </div>
-    </div> */}

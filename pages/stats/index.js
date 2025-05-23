@@ -20,7 +20,7 @@ import {
 } from "firebase/firestore";
 import app from "../../shared/FirebaseConfig";
 
-const COLORS = ["#00C49F", "#FF8042"]; // found - зелёный, lost - оранжевый
+const COLORS = ["#00C49F", "#FF8042"]; 
 
 function StatsPage() {
   const db = getFirestore(app);
